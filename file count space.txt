@@ -1,0 +1,47 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class Kumar {
+    public static void main(String[] args) {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\LAB\\Desktop\\space.txt"));
+            String line;
+            int depth = 0;
+            int countFile1 = 0;
+            int countFile2 = 0;
+            int countFile3 = 0;
+            int countFile4 = 0;
+            int countFile5 = 0;
+
+            while ((line = reader.readLine()) != null) {
+                int indent = line.lastIndexOf(' ') + 1;
+                if (indent < depth) {
+                    depth = indent;
+                }
+                if (line.trim().equals("file1")) {
+                    countFile1 = indent;
+                } else if (line.trim().equals("file2")) {
+                    countFile2 = indent;
+                } else if (line.trim().equals("file3")) {
+                    countFile3 = indent;
+                } else if (line.trim().equals("file4")) {
+                    countFile4 = indent;
+                } else if (line.trim().equals("file5")) {
+                    countFile5 = indent;
+                }
+                System.out.println(line);
+            }
+
+            reader.close();
+
+            System.out.println("Spaces before file1: " + countFile1);
+            System.out.println("Spaces before file2: " + countFile2);
+            System.out.println("Spaces before file3: " + countFile3);
+            System.out.println("Spaces before file4: " + countFile4);
+            System.out.println("Spaces before file5: " + countFile5);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
